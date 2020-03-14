@@ -8,7 +8,10 @@ public class SpawnManager : MonoBehaviour
     public GameObject powerupPrefab;
     private float spawnPosX;
     private float spawnPosZ;
-    private float spawnRange = 9;
+    private float xMin = -60;
+    private float xMax = 15;
+    private float zMin = -15;
+    private float zMax = 15;
     private int enemyCount;
     private int waveNumber = 1;
 
@@ -32,8 +35,23 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GenerateSpawnPosition()
     {
-        spawnPosX = Random.Range(-spawnRange, spawnRange);
-        spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        if (Random.Range(0, 1) > 0.5)
+        {
+            xMin = -60;
+            xMax = 15;
+            zMin = -15;
+            zMax = 15;
+        }
+        else
+        {
+            xMin = -35;
+            xMax = -10;
+            zMin = -35;
+            zMax = 35;
+        }
+
+        spawnPosX = Random.Range(xMin, xMax);
+        spawnPosZ = Random.Range(zMin, zMax);
         Vector3 spawnPosition = new Vector3(spawnPosX, 0, spawnPosZ);
         return spawnPosition;
     }

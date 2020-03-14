@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,20 +8,29 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     private bool hasPowerup = false;
-    private float powerupStrength = 15.0f;
+    private float powerupStrength = 20.0f;
     public GameObject powerupIndicator;
-    private float indicatorRotateSpeed = 60f;
-    public FixedJoystick joystick;
+    private float indicatorRotateSpeed = 60.0f;
+    public AudioClip engineStarting;
+    public AudioClip powerupSound;
+    private AudioSource playerAudio;
 
     void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         focalPoint = GameObject.Find("Focal Point");
         rb = GetComponent<Rigidbody>();
+        playerAudio.PlayOneShot(engineStarting, 1.0f);
     }
 
     void Update()
     {
-        float forwardInput = Input.GetAxis("Vertical") + joystick.Vertical;
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        transform.rotation = focalPoint.transform.rotation;
+        float forwardInput = Input.GetAxis("Vertical");
         rb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         powerupIndicator.transform.position = transform.position +
             new Vector3(0, -0.5f, 0);
@@ -36,6 +45,7 @@ public class PlayerController : MonoBehaviour
             powerupIndicator.gameObject.SetActive(true);
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
+            playerAudio.PlayOneShot(powerupSound, 1.0f);
         }
     }
 
