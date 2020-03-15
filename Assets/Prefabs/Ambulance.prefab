@@ -128,6 +128,7 @@ MonoBehaviour:
   speed: 10
   deathSound1: {fileID: 8300000, guid: dbc6c9598f8cebd4bb126f5e12a50526, type: 3}
   deathSound2: {fileID: 8300000, guid: b1a0fa824a6964a469f64cf03212a770, type: 3}
+  boostSound: {fileID: 8300000, guid: ffdbcb346155ca244ab482d0b208f033, type: 3}
 --- !u!82 &3468930363341164100
 AudioSource:
   m_ObjectHideFlags: 0
