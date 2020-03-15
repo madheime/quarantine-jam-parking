@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private bool hasPowerup = false;
     private float powerupStrength = 20.0f;
     public GameObject powerupIndicator;
-    private float indicatorRotateSpeed = 60.0f;
+    //private float indicatorRotateSpeed = 60.0f;
     public AudioClip engineStarting;
     public AudioClip powerupSound;
     private AudioSource playerAudio;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         powerupIndicator.transform.position = transform.position +
             new Vector3(0, -0.5f, 0);
-        powerupIndicator.transform.Rotate(Vector3.up, indicatorRotateSpeed * Time.deltaTime);
+        //powerupIndicator.transform.Rotate(Vector3.up, indicatorRotateSpeed * Time.deltaTime);
     }
 
     public void OnTriggerEnter(Collider other)
