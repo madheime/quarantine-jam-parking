@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip engineStarting;
     public AudioClip powerupSound;
     private AudioSource playerAudio;
+    public AudioClip[] enemyHitSounds;
+    public AudioClip poweredHit;
 
     void Start()
     {
@@ -51,12 +53,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = (collision.gameObject.transform.position -
-                transform.position).normalized;
-            enemyRb.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            if (hasPowerup)
+            {
+                playerAudio.PlayOneShot(poweredHit, 1.0f);
+                Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+                Vector3 awayFromPlayer = (collision.gameObject.transform.position -
+                    transform.position).normalized;
+                enemyRb.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            } else
+            {
+                int hitSoundIndex = Random.Range(0, enemyHitSounds.Length);
+                playerAudio.PlayOneShot(enemyHitSounds[hitSoundIndex], 1.0f);
+            }
         }
     }
 
@@ -66,4 +76,5 @@ public class PlayerController : MonoBehaviour
         hasPowerup = false;
         powerupIndicator.SetActive(false);
     }
+
 }
