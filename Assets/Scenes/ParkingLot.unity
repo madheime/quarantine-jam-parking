@@ -512,9 +512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce15a1797cd94444b06cc189416b02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownColor: {r: 0.9056604, g: 0.8164705, b: 0.09825563, a: 1}
-  isReady: 0
-  cooldown: 6
+  cooldownColor: {r: 0.8867924, g: 0.48656946, b: 0.40574938, a: 1}
+  isReady: 1
+  cooldown: 8
   instructions: {fileID: 0}
 --- !u!114 &222029026
 MonoBehaviour:
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 260703667}
   - component: {fileID: 260703666}
   m_Layer: 5
-  m_Name: Flip Cooldown
+  m_Name: Spin Cooldown
   m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,9 +660,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce15a1797cd94444b06cc189416b02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownColor: {r: 0.14217694, g: 0.6698113, b: 0.14217694, a: 1}
-  isReady: 0
-  cooldown: 5
+  cooldownColor: {r: 0.3255162, g: 0.5316929, b: 0.7264151, a: 1}
+  isReady: 1
+  cooldown: 3.5
   instructions: {fileID: 0}
 --- !u!114 &260703667
 MonoBehaviour:
@@ -921,7 +921,6 @@ GameObject:
   m_Component:
   - component: {fileID: 642830908}
   - component: {fileID: 642830907}
-  - component: {fileID: 642830909}
   - component: {fileID: 642830910}
   m_Layer: 0
   m_Name: Focal Point
@@ -958,21 +957,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &642830909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642830906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458ec032e5372d443896c9d5b6183dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinKey: 113
-  cooldown: {fileID: 260703666}
-  spinTorque: 500
 --- !u!54 &642830910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1620,9 +1604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: {fileID: 222029025}
-  dashCountdown: 4
-  dashForce: 100
-  dashDuration: 0.15
+  dashForce: 140
+  dashDuration: 0.3
 --- !u!65 &779609507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1647,8 +1630,37 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Radius: 1.75
+  m_Center: {x: 0, y: 1.5, z: 3}
+--- !u!135 &779609509
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779609497}
+  m_Material: {fileID: 13400000, guid: 73d7f4b3c98539f4d8c4f0cf89ecb17a, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.75
+  m_Center: {x: 0, y: 1.5, z: -2.5}
+--- !u!114 &779609510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779609497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ec032e5372d443896c9d5b6183dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinKey: 113
+  cooldown: {fileID: 260703666}
+  spinTorque: 205
+  spinDuration: 0.6
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

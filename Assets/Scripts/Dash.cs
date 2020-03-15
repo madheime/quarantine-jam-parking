@@ -10,7 +10,6 @@ public class Dash : MonoBehaviour
     private Vector3 vel;
     public Cooldown cooldown;
     private KeyCode dashKey = KeyCode.E;
-    public float dashCountdown = 6;
     public float dashForce = 200f;
     public float dashDuration = 0.15f;
 
