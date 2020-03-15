@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateCamera : MonoBehaviour
 {
@@ -21,5 +20,13 @@ public class RotateCamera : MonoBehaviour
         }
         float horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, rotationSpeed * horizontalInput * Time.deltaTime);
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }

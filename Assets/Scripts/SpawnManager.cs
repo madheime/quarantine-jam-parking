@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
     private float zMax = 15;
     private int enemyCount;
     private int waveNumber = 1;
+    private bool isGameOver = false;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         enemyCount = FindObjectsOfType<Enemy>().Length;
-        if (enemyCount == 0)
+        if (enemyCount == 0 && !isGameOver)
         {
             Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 2, 0);
             Instantiate(powerupPrefab, powerupPosition, powerupPrefab.transform.rotation);
@@ -67,6 +68,16 @@ public class SpawnManager : MonoBehaviour
         {
             int enemyIndex = Random.Range(0, enemyPrefabs.Length);
             Instantiate(enemyPrefabs[enemyIndex], GenerateSpawnPosition(), enemyPrefabs[enemyIndex].transform.rotation);
+        }
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].SetActive(false);
         }
     }
 }

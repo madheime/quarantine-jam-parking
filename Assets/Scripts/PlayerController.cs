@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip[] enemyHitSounds;
     public AudioClip poweredHit;
+    public Text gameOverText;
 
     void Start()
     {
@@ -27,19 +28,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("r"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
         transform.rotation = focalPoint.transform.rotation;
         float forwardInput = Input.GetAxis("Vertical");
         rb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         powerupIndicator.transform.position = transform.position +
             new Vector3(0, -0.5f, 0);
+        if (transform.position.y < -5)
+        {
+            gameOverText.gameObject.SetActive(true);
+
+            GameObject.Find("SpawnManager").SendMessage("GameOver");
+            Destroy(gameObject);
+        }
         //powerupIndicator.transform.Rotate(Vector3.up, indicatorRotateSpeed * Time.deltaTime);
     }
 
