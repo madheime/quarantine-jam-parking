@@ -26,12 +26,12 @@ public class Cooldown : MonoBehaviour
        {
             isReady = true;
             counter = 0;
-            clock.fillAmount = 0;
+            clock.fillAmount = 1;
        }
        else if (counter > 0)
        {
             counter -= Time.deltaTime;
-            clock.fillAmount = Mathf.Max((counter / cooldown), 0);
+            clock.fillAmount = Mathf.Min((1 - (counter / cooldown)), 1);
        }
     }
 
@@ -41,7 +41,7 @@ public class Cooldown : MonoBehaviour
         {
             isReady = false;
             counter = cooldown;
-            clock.fillAmount = 1;
+            clock.fillAmount = 0;
         }
     }
 
