@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
             playerAudio.PlayOneShot(powerupSound, 1.0f);
+        } else if (other.CompareTag("Boost"))
+        {
+            rb.AddForce(other.transform.forward * 100.0f, ForceMode.VelocityChange);
+            Destroy(other.gameObject);
+            playerAudio.PlayOneShot(powerupSound, 1.0f);
         }
     }
 

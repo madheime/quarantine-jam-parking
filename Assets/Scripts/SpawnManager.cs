@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     public GameObject powerupPrefab;
+    public GameObject boostPrefab;
     private float spawnPosX;
     private float spawnPosZ;
     private float xMin = -60;
@@ -19,6 +20,9 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 2, 0);
         Instantiate(powerupPrefab, powerupPosition, powerupPrefab.transform.rotation);
+
+        Instantiate(boostPrefab, GenerateSpawnPosition(), boostPrefab.transform.rotation);
+
         SpawnEnemyWave(waveNumber);
     }
 
@@ -29,6 +33,7 @@ public class SpawnManager : MonoBehaviour
         {
             Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 2, 0);
             Instantiate(powerupPrefab, powerupPosition, powerupPrefab.transform.rotation);
+            Instantiate(boostPrefab, GenerateSpawnPosition(), boostPrefab.transform.rotation);
             SpawnEnemyWave(++waveNumber);
         }
     }

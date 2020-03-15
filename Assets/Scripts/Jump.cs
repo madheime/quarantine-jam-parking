@@ -7,6 +7,7 @@ public class Jump : MonoBehaviour
     private Rigidbody rb;
     public float jumpForce = 10f;
     private bool onGround = false;
+    private float fallMultiplier = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +23,16 @@ public class Jump : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             onGround = false;
         }
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Jumper collided");
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("onGround is true");
             onGround = true;
         }
     }
