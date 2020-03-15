@@ -17,3 +17,6 @@ https://www.bfxr.net/
 
 And background music from:
 https://www.fesliyanstudios.com/
+
+Fire image from:
+http://pngimg.com/

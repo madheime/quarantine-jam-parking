@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             onGround = false;
         }
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && !onGround)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }

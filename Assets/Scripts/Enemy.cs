@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         rb.AddForce(lookDirection * speed);
         if (transform.position.y < -3)
         {
-            if (Random.Range(0, 1) < 0.5)
+            if (Random.Range(0, 1f) < 0.5)
             {
                 enemyAudio.PlayOneShot(deathSound1, 1.0f);
             }
