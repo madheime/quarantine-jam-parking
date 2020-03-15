@@ -7,10 +7,12 @@ public class Dash : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rb;
+    private Vector3 vel;
     public Cooldown cooldown;
     private KeyCode dashKey = KeyCode.E;
     public float dashCountdown = 6;
-    public float dashForce = 70f;
+    public float dashForce = 200f;
+    public float dashDuration = 0.15f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,14 @@ public class Dash : MonoBehaviour
 
     void DashPlayer()
     {
+        vel = rb.velocity;
         rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
+        StartCoroutine(DashRoutine());
+    }
+
+    IEnumerator DashRoutine()
+    {
+        yield return new WaitForSeconds(dashDuration);
+        rb.velocity = vel;
     }
 }
