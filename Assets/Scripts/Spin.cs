@@ -29,6 +29,7 @@ public class Spin : MonoBehaviour
     void SpinPlayer()
     {
         rb.AddTorque(new Vector3(0f, spinTorque, 0f));
+        rb.AddForce(spinTorque * Vector3.left , ForceMode.Force);
         StartCoroutine(SpinRoutine());        
     }
 
