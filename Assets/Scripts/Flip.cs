@@ -30,8 +30,15 @@ public class Flip : MonoBehaviour
 
     void FlipPlayer()
     {
-        rb.AddForce(Vector3.up * flipForceUp, ForceMode.Impulse);
-        rb.AddForce(Vector3.ProjectOnPlane(rb.velocity, Vector3.up), ForceMode.Impulse);
+        rb.AddTorque(new Vector3(0f, 250f, 0f));
+        StartCoroutine(FlipRoutine());
+        
+    }
+
+    IEnumerator FlipRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        rb.angularVelocity = Vector3.zero;
     }
 
 

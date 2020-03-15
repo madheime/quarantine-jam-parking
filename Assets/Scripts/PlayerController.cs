@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         transform.rotation = focalPoint.transform.rotation;
         float forwardInput = Input.GetAxis("Vertical");
         rb.AddForce(focalPoint.transform.forward * forwardInput * speed);
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PowerupCountdownRoutine()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(10);
         hasPowerup = false;
         powerupIndicator.SetActive(false);
     }

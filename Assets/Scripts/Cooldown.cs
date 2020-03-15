@@ -10,6 +10,7 @@ public class Cooldown : MonoBehaviour
     public bool isReady = false;
     private float counter;
     public float cooldown = 10;
+    public Text instructions;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class Cooldown : MonoBehaviour
         clock = this.GetComponent<Image>();
         clock.color = cooldownColor;
         counter = cooldown;
+        instructions = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
@@ -27,12 +29,14 @@ public class Cooldown : MonoBehaviour
             isReady = true;
             counter = 0;
             clock.fillAmount = 1;
+            instructions.gameObject.SetActive(true);
        }
        else if (counter > 0)
        {
             counter -= Time.deltaTime;
             clock.fillAmount = Mathf.Min((1 - (counter / cooldown)), 1);
-       }
+            instructions.gameObject.SetActive(false);
+        }
     }
 
     public void Activate()

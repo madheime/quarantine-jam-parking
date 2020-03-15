@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dash : MonoBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rb;
     public Cooldown cooldown;
-    public KeyCode dashKey = KeyCode.W;
+    private KeyCode dashKey = KeyCode.E;
     public float dashCountdown = 6;
-    public float dashDistance = 200f;
+    public float dashForce = 70f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,6 @@ public class Dash : MonoBehaviour
 
     void DashPlayer()
     {
-        rb.position += Vector3.up + Vector3.ProjectOnPlane(rb.velocity, Vector3.up) * dashDistance;
+        rb.AddForce(transform.forward * dashForce, ForceMode.Impulse);
     }
 }

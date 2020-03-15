@@ -40,13 +40,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Boost"))
-        {
-            rb.AddForce(other.transform.forward * 100.0f, ForceMode.VelocityChange);
-            Destroy(other.gameObject);
-            enemyAudio.PlayOneShot(boostSound, 1.0f);
-        }
-    }
 }
