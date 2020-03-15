@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     private float zMin = -15;
     private float zMax = 15;
     private int enemyCount;
-    private int waveNumber = 1;
+    public int waveNumber = 1;
     private bool isGameOver = false;
 
     void Start()

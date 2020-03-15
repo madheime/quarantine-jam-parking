@@ -35,9 +35,20 @@ public class PlayerController : MonoBehaviour
             new Vector3(0, -0.5f, 0);
         if (transform.position.y < -5)
         {
+            GameObject spawnManager = GameObject.Find("SpawnManager");
+            SpawnManager waveInfo = spawnManager.GetComponent<SpawnManager>();
+            gameOverText.text = "Game Over\nYou survived " + (waveInfo.waveNumber - 1);
+            if (waveInfo.waveNumber == 2)
+            {
+                gameOverText.text += " wave.\nPress 'R' to Restart";
+            } else
+            {
+                gameOverText.text += " waves.\nPress 'R' to Restart";
+            }
+                
             gameOverText.gameObject.SetActive(true);
-
-            GameObject.Find("SpawnManager").SendMessage("GameOver");
+            focalPoint.GetComponent<Rigidbody>().AddTorque(new Vector3(0f, 50f, 0f));
+            spawnManager.SendMessage("GameOver");
             Destroy(gameObject);
         }
         //powerupIndicator.transform.Rotate(Vector3.up, indicatorRotateSpeed * Time.deltaTime);
