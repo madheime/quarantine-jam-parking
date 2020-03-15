@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float speed = 7;
     public AudioClip deathSound1;
     public AudioClip deathSound2;
+    public AudioClip boostSound;
     private AudioSource enemyAudio;
 
     void Start()
@@ -36,6 +37,16 @@ public class Enemy : MonoBehaviour
             }
             
             Destroy(gameObject);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Boost"))
+        {
+            rb.AddForce(other.transform.forward * 100.0f, ForceMode.VelocityChange);
+            Destroy(other.gameObject);
+            enemyAudio.PlayOneShot(boostSound, 1.0f);
         }
     }
 }
