@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 2, 0);
+        Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 5, 0);
         Instantiate(powerupPrefab, powerupPosition, powerupPrefab.transform.rotation);
 
         //Instantiate(boostPrefab, GenerateSpawnPosition(), boostPrefab.transform.rotation);
@@ -32,10 +32,10 @@ public class SpawnManager : MonoBehaviour
         enemyCount = FindObjectsOfType<Enemy>().Length;
         if (enemyCount == 0 && !isGameOver)
         {
-            Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 2, 0);
+            Vector3 powerupPosition = GenerateSpawnPosition() + new Vector3(0, 5, 0);
             Instantiate(powerupPrefab, powerupPosition, powerupPrefab.transform.rotation);
             //Instantiate(boostPrefab, GenerateSpawnPosition(), boostPrefab.transform.rotation);
-            SpawnEnemyWave(++waveNumber);
+            SpawnEnemyWave(++waveNumber * waveNumber);
         }
     }
 
@@ -43,17 +43,17 @@ public class SpawnManager : MonoBehaviour
     {
         if (Random.Range(0, 1.0f) > 0.5)
         {
-            xMin = -60;
-            xMax = 15;
+            xMin = -70;
+            xMax = 40;
             zMin = -15;
-            zMax = 15;
+            zMax = 50;
         }
         else
         {
-            xMin = -35;
-            xMax = -10;
+            xMin = -45;
+            xMax = 15;
             zMin = -35;
-            zMax = 35;
+            zMax = 70;
         }
 
         spawnPosX = Random.Range(xMin, xMax);
