@@ -11,6 +11,8 @@ public class Spin : MonoBehaviour
     public Cooldown cooldown;
     public float spinTorque = 350f;
     public float spinDuration = 0.2f;
+    public float explosionRadius = 12f;
+    public float explosionForce = 15f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +35,11 @@ public class Spin : MonoBehaviour
 
     void SpinPlayer()
     {
+        rb.AddRelativeForce(((1.0f * spinTorque) * Vector3.back));
+        
         rb_camera.AddTorque(new Vector3(0f, spinTorque, 0f));
-        rb.AddForceAtPosition((-1.1f * spinTorque) * transform.right, new Vector3(0, 2, 4.75f));
-        rb.AddRelativeForce( (7.5f * spinTorque) * Vector3.left , ForceMode.Force);
-        StartCoroutine(SpinRoutine());        
+        StartCoroutine(SpinRoutine());
+        SpinExplode();
     }
 
     IEnumerator SpinRoutine()
@@ -44,9 +47,19 @@ public class Spin : MonoBehaviour
         yield return new WaitForSeconds(spinDuration);
         rb_camera.angularVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.AddRelativeForce((1.5f * spinTorque) * Vector3.forward, ForceMode.Force);
-        rb.AddRelativeForce((2.0f * spinTorque) * Vector3.left);
     }
 
-
+    void SpinExplode()
+    {
+        Collider[] objects = UnityEngine.Physics.OverlapSphere(rb.position, explosionRadius);
+        foreach (Collider h in objects)
+        {
+            Rigidbody r = h.GetComponent<Rigidbody>();
+            if (r != null && !Rigidbody.Equals(r, rb))
+            {
+                r.AddExplosionForce(explosionForce, rb.position, explosionRadius);
+            }
+        }
+    }
+    
 }
