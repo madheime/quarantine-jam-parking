@@ -9,6 +9,7 @@ public class Spin : MonoBehaviour
     private Rigidbody rb_camera;
     public KeyCode spinKey = KeyCode.Q;
     public Cooldown cooldown;
+    public GameObject spinEffect;
     public float spinTorque = 350f;
     public float spinDuration = 0.2f;
     public float explosionRadius = 12f;
@@ -39,12 +40,14 @@ public class Spin : MonoBehaviour
         
         rb_camera.AddTorque(new Vector3(0f, spinTorque, 0f));
         StartCoroutine(SpinRoutine());
+        spinEffect.gameObject.SetActive(true);
         SpinExplode();
     }
 
     IEnumerator SpinRoutine()
     {
         yield return new WaitForSeconds(spinDuration);
+        spinEffect.gameObject.SetActive(false);
         rb_camera.angularVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
