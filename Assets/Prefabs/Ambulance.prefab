@@ -105,7 +105,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871759892732971984}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1.2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58546e5df2ade2c4f9062a35ec9c5a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 14
   deathSound1: {fileID: 8300000, guid: dbc6c9598f8cebd4bb126f5e12a50526, type: 3}
   deathSound2: {fileID: 8300000, guid: b1a0fa824a6964a469f64cf03212a770, type: 3}
   boostSound: {fileID: 8300000, guid: ffdbcb346155ca244ab482d0b208f033, type: 3}
